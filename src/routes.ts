@@ -17,9 +17,9 @@ defaultRoute.get('/', async (req, res) => {
     return;
   }
 
-  const regex = /<h2>(.*?)<\/h2>/g;
+  const regex = /<(h1|h2)>(.*?)<\/(h1|h2)>/g;
   const matches = postContent.match(regex);
-  const headers = (matches || []).map((match) => match.replace(/<\/?h2>/g, ''));
+  const headers = (matches || []).map((match) => match.replace(/<\/?(h1|h2)>/g, ''));
 
   const images = await Promise.all(headers.map(async (header) => {
     const photos = await searchPhotos(`${header}`);
@@ -33,7 +33,19 @@ defaultRoute.get('/', async (req, res) => {
   }));
 
   const postContentWithImages = images.reduce((acc, image) => {
-    return acc.replace(`[${image?.header}]`, image?.url || '');
+    if (!image?.header) {
+      return acc
+    }
+
+    if (acc.includes(`[${image?.header}-image]`)) {
+      return acc.replace(`[${image?.header}]`, image?.url || '');
+    }
+
+    if (acc.includes(`{${image?.header}-image}`)) {
+      return acc.replace(`[${image?.header}]`, image?.url || '');
+    }
+
+    return acc
   }, postContent)
 
   res.send(postContentWithImages);
