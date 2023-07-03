@@ -63,8 +63,6 @@ export const generatePostTitleInCategory = (category: keyof PostTitleGroups) => 
   const matches = title.match(regex);
   const variables = (matches || []).map((m) => m.replace(/{{|}}/g, ''));
 
-  console.log(variables)
-
   return variables.reduce((acc, variable) => {
     let value = '';
     switch(variable) {
@@ -80,8 +78,6 @@ export const generatePostTitleInCategory = (category: keyof PostTitleGroups) => 
         value = cities[Math.floor(Math.random() * cities.length)]
         break;
     }
-
-    console.log(`${variable}: ${value}`)
 
     return !!value ? acc.replace(`{{${variable}}}`, value) : acc;
   }, title)

@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "npx tsc",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q ../../dist/index.js\""
+    "build": "npx tsc --outDir ../../dist/blog-engine",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q ../../dist/blog-engine/index.js\""
   },
   "dependencies": {
+    "@sanity/block-tools": "^3.14.1",
+    "@sanity/client": "^6.1.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsdom": "^22.1.0",
     "node-fetch": "^2.6.12",
     "openai": "^3.3.0",
     "unsplash-js": "^7.0.18"

@@ -36,6 +36,6 @@ export const createPost = async ({
       }],
     });
   } catch (e) {
-    console.log('Failed to generate post');
+    console.error('Failed to generate post');
   }
 }

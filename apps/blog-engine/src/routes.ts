@@ -4,6 +4,9 @@ import { searchPhotos } from './unsplash/search-photos';
 import { insertImages } from './helpers/insert-images';
 import { getPostImages } from './helpers/get-post-images';
 import { generatePostTitleInCategory } from './data/post-titles';
+import { convertPostContent, savePost } from './sanity';
+import { getPosts } from './sanity/get-posts';
+import { htmlToBlocks } from '@sanity/block-tools';
 
 export const defaultRoute = Router();
 
@@ -29,6 +32,12 @@ defaultRoute.get('/', async (req, res) => {
   const images = await getPostImages(headers)
   const formattedPostContent = insertImages(postContent, images)
 
+  await savePost({
+    title,
+    content: convertPostContent(formattedPostContent),
+    category: 'travel',
+  })
+
   res.send(`
     <h1>${title}</h1>
     ${formattedPostContent}
@@ -43,6 +52,13 @@ defaultRoute.get('/photos', async (req, res) => {
 
 defaultRoute.get('/create-post', async (req, res) => {
   const title = generatePostTitleInCategory('travel')
+  const post = await savePost({
+    title,
+    content: convertPostContent('<h2>This is a test post</h2><p>With some paragraph text</p>'),
+    category: 'travel',
+  })
+
+  console.log(JSON.stringify(post, null, 2))
 
   res.send(`<h1>${title}</h1>`);
 })
