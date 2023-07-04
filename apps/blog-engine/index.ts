@@ -5,7 +5,7 @@ import { defaultRoute } from './src/routes';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.BLOG_ENGINE_PORT;
 
 app.use('/', defaultRoute);
 

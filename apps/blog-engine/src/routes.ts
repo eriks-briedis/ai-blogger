@@ -50,15 +50,10 @@ defaultRoute.get('/photos', async (req, res) => {
   res.send(`${JSON.stringify(photos)}`);
 })
 
-defaultRoute.get('/create-post', async (req, res) => {
-  const title = generatePostTitleInCategory('travel')
-  const post = await savePost({
-    title,
-    content: convertPostContent('<h2>This is a test post</h2><p>With some paragraph text</p>'),
-    category: 'travel',
-  })
+defaultRoute.get('/posts', async (req, res) => {
+  const posts = await getPosts()
 
-  console.log(JSON.stringify(post, null, 2))
+  console.log(JSON.stringify(posts, null, 2))
 
-  res.send(`<h1>${title}</h1>`);
+  res.send(``);
 })

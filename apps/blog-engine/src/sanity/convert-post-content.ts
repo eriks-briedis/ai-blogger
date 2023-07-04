@@ -1,5 +1,5 @@
-import {Schema} from '@sanity/schema'
-import {htmlToBlocks, getBlockContentFeatures} from '@sanity/block-tools'
+import { Schema } from '@sanity/schema'
+import { htmlToBlocks } from '@sanity/block-tools'
 
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom
@@ -21,7 +21,10 @@ const defaultSchema = Schema.compile({
           title: 'Body',
           name: 'content',
           type: 'array',
-          of: [{type: 'block'}],
+          of: [
+            { type: 'block' },
+            { type: 'image' },
+          ],
         },
       ],
     },

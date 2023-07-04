@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply text-2xl;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    @apply text-base;
+    margin-bottom: 1rem;
+  }
+}
