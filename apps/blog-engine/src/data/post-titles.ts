@@ -1,5 +1,5 @@
-import { cities } from "./cities";
-import { countries } from "./countries";
+import { cities } from './cities';
+import { countries } from './countries';
 
 const postTitlesByCategory: PostTitleGroups = {
   travel: [
@@ -10,7 +10,7 @@ const postTitlesByCategory: PostTitleGroups = {
     `A Food Lover's Guide to {{city}}: Exploring the Culinary Delights`,
     `How to Plan the Perfect Weekend Getaway on a Budget`,
     `The Ultimate Road Trip Playlist: Songs for the Open Road`,
-    `Exploring {{city}}'s Local Markets: A Shopper"s Paradise`,
+    `Exploring {{city}}'s Local Markets: A Shopper's Paradise`,
     `Healthy and Delicious Recipes from Around the World`,
     `{{topCount}} Unique Experiences to Try in {{country}}`,
     `{{topCount}} Unique Experiences to Try in {{city}}`,

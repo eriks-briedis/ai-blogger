@@ -21,7 +21,7 @@ export default {
       type: 'slug',
       options: {
         //Change to schema title to automatically populate
-        source: "title",
+        source: 'title',
         slugify: (input: string) =>
           input
             .toLowerCase()

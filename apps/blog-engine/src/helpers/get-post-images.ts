@@ -1,15 +1,17 @@
-import { searchPhotos } from '../unsplash/search-photos';
+import { findPhoto } from '../unsplash/search-photos';
+import { getPostHeaders } from './get-post-headers';
 import { PostImage } from './insert-images';
 
-export const getPostImages = async (headers: string[]): Promise<PostImage[]> => {
+export const getPostImages = async (postContent: string): Promise<PostImage[]> => {
+  const headers = getPostHeaders(postContent)
   const images = await Promise.all(headers.map(async (header): Promise<PostImage | undefined> => {
-    const photos = await searchPhotos(`${header}`);
-    const photo = photos.response?.results[0]
+    const photo = await findPhoto(`${header}`);
+
     if (photo) {
       return {
         header,
         url: photo.urls.regular,
-        authorPorfolioUrl: photo.user.portfolio_url || undefined,
+        authorPorfolioUrl: photo.user.links.html || undefined,
         authorName: photo.user.name,
       }
     }
