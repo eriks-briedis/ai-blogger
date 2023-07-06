@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "build": "npx tsc --outDir ../../dist/blog-engine",
+    "build": "npx tsc",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node-esm' ./index.ts"
   },
   "dependencies": {
