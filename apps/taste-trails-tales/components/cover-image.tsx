@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { SanityImage } from './sanity-image'
 
-type Props = {
+interface Props {
   title: string
   src: string
   slug?: any
@@ -14,13 +14,15 @@ const CoverImage = ({ title, src, slug }: Props) => {
 
   return (
     <div className="sm:mx-0">
-      {slug ? (
+      {slug
+        ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]" aria-label={title}>
           {image}
         </Link>
-      ) : (
-        image
-      )}
+          )
+        : (
+            image
+          )}
     </div>
   )
 }

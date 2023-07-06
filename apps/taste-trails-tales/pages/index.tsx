@@ -6,13 +6,13 @@ import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
 import { TITLE } from '../lib/constants'
-import Post from '../interfaces/post'
+import type Post from '../interfaces/post'
 
-type Props = {
+interface Props {
   allPosts: Post[]
 }
 
-export default function Index({ allPosts }: Props) {
+export default function Index ({ allPosts }: Props) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (

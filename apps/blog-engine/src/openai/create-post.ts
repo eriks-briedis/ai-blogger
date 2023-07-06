@@ -1,11 +1,11 @@
-import { openai } from './setup';
+import { openai } from './setup'
 
 export interface CreatePostParams {
-  title: string;
-  minSectionParagraphs?: number;
-  length?: number;
-  tone?: 'casual' | 'formal';
-  format?: 'html' | 'markdown';
+  title: string
+  minSectionParagraphs?: number
+  length?: number
+  tone?: 'casual' | 'formal'
+  format?: 'html' | 'markdown'
 }
 
 export const createPost = async ({
@@ -16,7 +16,7 @@ export const createPost = async ({
   format = 'html',
 }: CreatePostParams) => {
   try {
-    return openai.createChatCompletion({
+    return await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [{
         role: 'user',
@@ -32,10 +32,10 @@ export const createPost = async ({
         Each section should have at least ${minSectionParagraphs} paragraphs.
         Don't print the blog post title.
         Start the post with a short introduction without a header.
-        Add a closing paragraph at the end of the post to summarize the post.`
+        Add a closing paragraph at the end of the post to summarize the post.`,
       }],
-    });
+    })
   } catch (e) {
-    console.error('Failed to generate post');
+    console.error('Failed to generate post')
   }
 }

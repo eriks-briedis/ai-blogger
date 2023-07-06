@@ -10,8 +10,8 @@ export interface SavePostParams {
   date: string
 }
 
-export const savePost = async(parans: SavePostParams) => {
-  return postClient.create({
+export const savePost = async (parans: SavePostParams) => {
+  return await postClient.create({
     _type: 'post',
     ...parans,
   })

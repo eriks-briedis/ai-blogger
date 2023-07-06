@@ -1,9 +1,9 @@
-import { Rule } from "sanity";
+import { type Rule } from 'sanity'
 
 export default {
   name: 'post',
   type: 'document',
-	title: 'Post',
+  title: 'Post',
   fields: [
     {
       name: 'title',
@@ -20,15 +20,15 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        //Change to schema title to automatically populate
+        // Change to schema title to automatically populate
         source: 'title',
         slugify: (input: string) =>
           input
             .toLowerCase()
-            //Remove spaces
-            .replace(/\s+/g, "-")
-            //Remove special characters
-            .replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, ""),
+            // Remove spaces
+            .replace(/\s+/g, '-')
+            // Remove special characters
+            .replace(/[&/\\#,+()$~%.'":*?<>{}]/g, ''),
         validation: (Rule: Rule) => Rule.required(),
       },
     },
@@ -55,7 +55,7 @@ export default {
       type: 'array',
       of: [
         { type: 'block' },
-        { type: 'image' }
+        { type: 'image' },
       ],
     },
     {
@@ -73,5 +73,5 @@ export default {
       title: 'Category',
       type: 'string',
     },
-  ]
+  ],
 }

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import Container from './container'
 
-type Props = {
+interface Props {
   preview?: boolean
 }
 

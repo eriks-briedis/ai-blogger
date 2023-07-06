@@ -1,10 +1,10 @@
-import type Author from '../interfaces/author';
-import { SanityImage } from './sanity-image';
-import Avatar from './avatar';
-import DateFormatter from './date-formatter';
-import PostTitle from './post-title';
+import type Author from '../interfaces/author'
+import { SanityImage } from './sanity-image'
+import Avatar from './avatar'
+import DateFormatter from './date-formatter'
+import PostTitle from './post-title'
 
-type Props = {
+interface Props {
   title: string
   coverImage: any
   date: string

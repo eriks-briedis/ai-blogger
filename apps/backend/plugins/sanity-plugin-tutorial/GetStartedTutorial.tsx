@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, { useRef, useState } from 'react'
 import {
   Card,
   Container,
@@ -11,11 +11,11 @@ import {
   useElementSize,
   useTheme,
 } from '@sanity/ui'
-import {CloseIcon} from '@sanity/icons'
-import styled, {css} from 'styled-components'
+import { CloseIcon } from '@sanity/icons'
+import styled, { css } from 'styled-components'
 
 const BlueColor = css`
-  color: ${({theme}) => theme.sanity.color.muted.primary.enabled.fg};
+  color: ${({ theme }) => theme.sanity.color.muted.primary.enabled.fg};
 `
 
 const LabelContainer = styled(Label)`
@@ -28,10 +28,10 @@ const TextContainer = styled(Text)`
 
 export const GetStartedTutorial = () => {
   const [hideTutorial, setShowTutorial] = useState(
-    window.localStorage.getItem('getstarted_closedTutorial') !== null
+    window.localStorage.getItem('getstarted_closedTutorial') !== null,
   )
 
-  const {sanity} = useTheme()
+  const { sanity } = useTheme()
   const rootElement = useRef(null)
   const rect = useElementSize(rootElement.current)
   const width = rect?.content?.width

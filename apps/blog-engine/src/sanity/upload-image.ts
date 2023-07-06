@@ -1,7 +1,5 @@
-import { SanityImageAssetDocument } from '@sanity/client'
+import { type SanityImageAssetDocument } from '@sanity/client'
 import { postClient } from './setup'
-import { createWriteStream } from 'fs'
-import { Readable } from 'stream'
 
 export const uploadImage = async (imageUrl: string): Promise<SanityImageAssetDocument> => {
   console.info(`Downloading image from Unsplash: ${imageUrl}`)
@@ -10,5 +8,5 @@ export const uploadImage = async (imageUrl: string): Promise<SanityImageAssetDoc
   const blob = await image.blob()
 
   console.info('Uploading image to Sanity')
-  return postClient.assets.upload('image', Buffer.from(await blob.arrayBuffer()))
+  return await postClient.assets.upload('image', Buffer.from(await blob.arrayBuffer()))
 }

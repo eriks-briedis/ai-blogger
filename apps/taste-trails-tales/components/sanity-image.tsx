@@ -1,15 +1,15 @@
-import { createClient } from '@sanity/client';
+import { createClient } from '@sanity/client'
 import Img from 'next/image'
-import { useNextSanityImage } from 'next-sanity-image';
+import { useNextSanityImage } from 'next-sanity-image'
 
 const configuredSanityClient = createClient({
-	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-	useCdn: true,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  useCdn: true,
   apiVersion: '2023-07-01',
-});
+})
 
-export const SanityImage = ({ image, title, alt }: any) => { //@TODO: type this
+export const SanityImage = ({ image, title, alt }: any) => { // @TODO: type this
   const imageProps: any = useNextSanityImage(configuredSanityClient, image)
 
   return (

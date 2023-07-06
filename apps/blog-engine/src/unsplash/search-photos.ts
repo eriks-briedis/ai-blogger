@@ -1,8 +1,6 @@
 import { unsplash } from './setup'
 
-export const findPhoto = async (
-  query: string,
-) => {
+export const findPhoto = async (query: string) => {
   const response = await unsplash.search.getPhotos({
     query,
     orientation: 'landscape',
@@ -12,9 +10,10 @@ export const findPhoto = async (
     throw new Error('Failed to search photos')
   }
 
-  const photos = response.response?.results || []
+  const photos = response.response?.results ?? []
+  const index: number = Math.floor(Math.random() * photos.length)
 
-  return photos[0]
+  return photos[index]
 }
 
 export const getPhotoUrls = async (

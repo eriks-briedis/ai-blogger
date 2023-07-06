@@ -1,5 +1,5 @@
-import { postClient } from './setup';
+import { postClient } from './setup'
 
 export const getPosts = async () => {
-  return postClient.fetch('*[_type == "post"]')
-};
+  return await postClient.fetch('*[_type == "post"]')
+}

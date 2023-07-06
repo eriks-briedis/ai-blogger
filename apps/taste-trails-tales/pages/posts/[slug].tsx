@@ -11,13 +11,13 @@ import type PostType from '../../interfaces/post'
 import { getAllPosts, getPostBySlug } from '../../lib/api'
 import { TITLE } from '../../lib/constants'
 
-type Props = {
+interface Props {
   post: PostType
   morePosts: PostType[]
   preview?: boolean
 }
 
-export default function Post({ post, morePosts, preview }: Props) {
+export default function Post ({ post, morePosts, preview }: Props) {
   const router = useRouter()
   const title = `${post.title} | ${TITLE}`
   if (!router.isFallback && !post?.slug) {
@@ -27,9 +27,9 @@ export default function Post({ post, morePosts, preview }: Props) {
     <Layout preview={preview}>
       <Container>
         <Header />
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
+        {router.isFallback
+          ? <PostTitle>Loading…</PostTitle>
+          : (
           <>
             <article className="mb-32">
               <Head>
@@ -46,19 +46,19 @@ export default function Post({ post, morePosts, preview }: Props) {
               <PortableText value={post.content} />
             </article>
           </>
-        )}
+            )}
       </Container>
     </Layout>
   )
 }
 
-type Params = {
+interface Params {
   params: {
     slug: string
   }
 }
 
-export async function getStaticProps({ params }: Params) {
+export async function getStaticProps ({ params }: Params) {
   const post = await getPostBySlug(params.slug, [
     'title',
     'date',
@@ -78,7 +78,7 @@ export async function getStaticProps({ params }: Params) {
   }
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   const posts = await getAllPosts(['slug'])
 
   return {

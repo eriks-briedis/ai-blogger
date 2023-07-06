@@ -3,4 +3,3 @@ export const PostCategories = [
   // 'food',
   // 'lifestyle',
 ] as const
-

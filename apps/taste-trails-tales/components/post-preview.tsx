@@ -4,7 +4,7 @@ import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
 
-type Props = {
+interface Props {
   title: string
   coverImage: string
   date: string

@@ -1,5 +1,5 @@
-import { cities } from './cities';
-import { countries } from './countries';
+import { cities } from './cities'
+import { countries } from './countries'
 
 const postTitlesByCategory: PostTitleGroups = {
   travel: [
@@ -52,37 +52,36 @@ const postTitlesByCategory: PostTitleGroups = {
 }
 
 export const generatePostTitleInCategory = (category: keyof PostTitleGroups) => {
-  const titles = postTitlesByCategory[category];
+  const titles = postTitlesByCategory[category]
   if (!titles) {
-    throw new Error(`No titles found for category: ${category}`);
+    throw new Error(`No titles found for category: ${category}`)
   }
 
-  const title = titles[Math.floor(Math.random() * titles.length)];
+  const title = titles[Math.floor(Math.random() * titles.length)]
 
-  const regex = /{{(.*?)}}/g;
-  const matches = title.match(regex);
-  const variables = (matches || []).map((m) => m.replace(/{{|}}/g, ''));
+  const regex = /{{(.*?)}}/g
+  const matches = title.match(regex)
+  const variables = (matches ?? []).map((m) => m.replace(/{{|}}/g, ''))
 
   return variables.reduce((acc, variable) => {
-    let value = '';
-    switch(variable) {
+    let value = ''
+    const min = 5
+    const max = 10
+
+    switch (variable) {
       case 'topCount':
-        const min = 5;
-        const max = 10;
-        value = `${Math.floor(Math.random() * (max - min + 1)) + min}`;
-        break;
+        value = `${Math.floor(Math.random() * (max - min + 1)) + min}`
+        break
       case 'country':
         value = countries[Math.floor(Math.random() * countries.length)]
-        break;
+        break
       case 'city':
         value = cities[Math.floor(Math.random() * cities.length)]
-        break;
+        break
     }
 
-    return !!value ? acc.replace(`{{${variable}}}`, value) : acc;
+    return value ? acc.replace(`{{${variable}}}`, value) : acc
   }, title)
-};
-
-export interface PostTitleGroups {
-  [key: string]: string[];
 }
+
+export type PostTitleGroups = Record<string, string[]>

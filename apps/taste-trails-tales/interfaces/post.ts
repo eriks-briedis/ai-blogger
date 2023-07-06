@@ -1,7 +1,10 @@
 import type Author from './author'
 
-type PostType = {
-  slug: string
+interface PostType {
+  slug: {
+    current: string
+    type: 'slug'
+  }
   title: string
   date: string
   coverImage: string
